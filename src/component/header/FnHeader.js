@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { API } from "const";
 import { RequestUtils } from "utils";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const FnHeader = (props) => {
-  const message = useSelector(({ configs }) => configs.message);
   const [menu, setMenu] = useState([]);
-
   useEffect(() => {
     (async () => {
       const menus = await RequestUtils.Get(API.MENU);
@@ -53,7 +50,6 @@ const FnHeader = (props) => {
           </div>
           {/* /.container-fluid */}
         </nav>
-        {message.data}
       </div>
     </>
   );

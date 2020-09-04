@@ -4,26 +4,22 @@ import ContainerLayouts from "./ContainerLayouts";
 import { withRouter } from "react-router-dom";
 import { matchRoutes } from "react-router-config";
 import { useSelector, useDispatch } from "react-redux";
-import { setMessage, setLayout, setDataForHome } from "store/actions";
+import { setLayout, setDataForHome } from "store/actions";
 
 // ben trong withRouter se goi ntn.
 // <MainLayouts {...props} />
 const MainLayouts = (props) => {
   const dispatch = useDispatch();
-  const { layout, dataForHome } = useSelector(({ configs }) => configs);
-  const settings = useSelector(({ settings }) => settings);
+  const { layout } = useSelector(({ configs }) => configs);
   
-  console.log("dataForHome", dataForHome);
   useEffect(() => {
     dispatch(setDataForHome());
-    dispatch(setMessage("warning", "Data warning . !"));
   }, []);
 
   const routes = useContext(AppContext);
   useLayoutEffect(() => {
     const matched = matchRoutes(routes, props.location.pathname)[0];
     if (matched && matched.route.settings) {
-      console.log("matched route", matched);
       const { layout } = matched.route.settings;
       dispatch(setLayout(layout));
     }

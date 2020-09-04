@@ -6,7 +6,7 @@ export const ContactConfig = {
     layout: 'Admin',
     showSideBar: true
   },
-  auth: authRoutes.onlyGuest,
+  auth: authRoutes.user,
   routes: [
     {
       path: '/contact-us',

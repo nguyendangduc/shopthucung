@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {API} from 'const'
-import {RequestUtils} from "utils";
 import SideBar from './SideBar';
 
 class Home extends Component {
@@ -16,12 +14,10 @@ class Home extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {sibar, home} = nextProps.datas;
-    if(sibar !== undefined) {
-      this.setState({
-        dataHome:  home,
-        sidebar: sibar
-      })
-    }
+    this.setState({
+      dataHome:  home,
+      sidebar: sibar
+    })
   }
 
   shouldComponentUpdate(nextState, preState) {

@@ -1,4 +1,17 @@
 class RoutesUtils {
+
+  /*
+  authRules: Rule của file route config.
+  useRules: Rule của người dùng hiện tại.
+   */
+  static hasPermision(authRules, useRules) {
+    if(authRules === null || authRules.length === 0) {
+      return true;
+    } else {
+      return authRules.some(r => useRules.indexOf(r) >= 0);
+    }
+  }
+
   static generaRouteFromConfig(configs, defaultAuth) {
     console.log("configs", configs);
     let allRouters = [];

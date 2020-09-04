@@ -5,6 +5,7 @@ import routes from "router/common/routes";
 import AppContext from "./AppContext";
 import MainLayouts from "layouts/MainLayouts";
 import store from "store";
+import Authorization from 'auth/Authorization';
 
 function App() {
   console.log("routes", routes);
@@ -12,7 +13,9 @@ function App() {
     <AppContext.Provider value={routes}>
       <Provider store={store}>
         <Router>
-          <MainLayouts />
+          <Authorization>
+            <MainLayouts />
+          </Authorization>
         </Router>
       </Provider>
     </AppContext.Provider>
