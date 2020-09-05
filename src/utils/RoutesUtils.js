@@ -5,15 +5,17 @@ class RoutesUtils {
   useRules: Rule của người dùng hiện tại.
    */
   static hasPermision(authRules, useRules) {
-    if(authRules === null || authRules.length === 0) {
+    if(authRules === null || authRules.length === 0 || authRules === undefined) {
       return true;
     } else {
-      return authRules.some(r => useRules.indexOf(r) >= 0);
+      if ( useRules && Array.isArray(useRules) ) {
+        return (useRules.indexOf("ROLE_ADMIN") !== -1) || authRules.some(r => useRules.indexOf(r) >= 0);
+      }
+      return authRules.includes(useRules);
     }
   }
 
   static generaRouteFromConfig(configs, defaultAuth) {
-    console.log("configs", configs);
     let allRouters = [];
     configs.forEach((config) => {
       allRouters = [...allRouters, ...this.setRoute(config, defaultAuth)];

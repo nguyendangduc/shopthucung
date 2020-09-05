@@ -20,10 +20,6 @@ class Home extends Component {
     })
   }
 
-  shouldComponentUpdate(nextState, preState) {
-    return true;
-  }
-
   render() {
     return (
       <section className="main-content920">

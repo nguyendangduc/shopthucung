@@ -8,7 +8,6 @@ import store from "store";
 import Authorization from 'auth/Authorization';
 
 function App() {
-  console.log("routes", routes);
   return (
     <AppContext.Provider value={routes}>
       <Provider store={store}>
