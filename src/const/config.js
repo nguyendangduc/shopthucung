@@ -4,3 +4,4 @@ export const API = {
   DATA_SIBAR: "/api/sibar",
   MENU: "/api/menu"
 }
+export const SUCCESS_CODE = 200;

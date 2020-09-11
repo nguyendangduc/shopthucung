@@ -1,4 +1,4 @@
-import React, { useState, useContext, useLayoutEffect, useEffect } from "react";
+import React, { useContext, useLayoutEffect, useEffect } from "react";
 import AppContext from "AppContext";
 import ContainerLayouts from "./ContainerLayouts";
 import { withRouter } from "react-router-dom";
@@ -9,9 +9,10 @@ import { setLayout, setDataForHome } from "store/actions";
 // ben trong withRouter se goi ntn.
 // <MainLayouts {...props} />
 const MainLayouts = (props) => {
+
   const dispatch = useDispatch();
   const { layout } = useSelector(({ configs }) => configs);
-  
+
   useEffect(() => {
     dispatch(setDataForHome());
   }, []);

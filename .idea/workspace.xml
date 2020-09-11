@@ -2,15 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3db62ee6-e177-40c5-9444-7ec10fdc403b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/router/auth/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/router/auth/LoginConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/router/common/AccessDeny.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/@history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/@lodash/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock-api/home/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/home/GET.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock-api/menu/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/menu/GET.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock-api/sibar/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/sibar/GET.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mock-api/user/t3h/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/user/t3h/GET.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/auth/Authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Authorization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/const/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/MainLayouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/MainLayouts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/common/AccessDeny.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/common/AccessDeny.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/common/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/common/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/RoutesUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/RoutesUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +46,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/router" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/router" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/component/Content" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/router" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -59,7 +70,10 @@
       <updated>1597708546600</updated>
       <workItem from="1597708549002" duration="4830000" />
       <workItem from="1599263401883" duration="2162000" />
-      <workItem from="1599266049934" duration="498000" />
+      <workItem from="1599266049934" duration="1229000" />
+      <workItem from="1599478644578" duration="35000" />
+      <workItem from="1599481459895" duration="36000" />
+      <workItem from="1599837001992" duration="7164000" />
     </task>
     <servers />
   </component>
@@ -71,5 +85,21 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="474" y="181" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1599264823747" />
+    <state width="1386" height="207" key="GridCell.Tab.0.bottom" timestamp="1599841526733">
+      <screen x="0" y="23" width="1440" height="806" />
+    </state>
+    <state width="1386" height="207" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1599841526733" />
+    <state width="1386" height="207" key="GridCell.Tab.0.center" timestamp="1599841526729">
+      <screen x="0" y="23" width="1440" height="806" />
+    </state>
+    <state width="1386" height="207" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1599841526729" />
+    <state width="1386" height="207" key="GridCell.Tab.0.left" timestamp="1599841526728">
+      <screen x="0" y="23" width="1440" height="806" />
+    </state>
+    <state width="1386" height="207" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1599841526728" />
+    <state width="1386" height="207" key="GridCell.Tab.0.right" timestamp="1599841526731">
+      <screen x="0" y="23" width="1440" height="806" />
+    </state>
+    <state width="1386" height="207" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1599841526731" />
   </component>
 </project>

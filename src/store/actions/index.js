@@ -30,10 +30,7 @@ export function setDataForHome() {
       RequestUtils.Get(API.DATA_SIBAR, { id: 10, cate: 20 }),
       RequestUtils.Get(API.DATA_HOME),
     ]).then((results) => {
-      return {
-        sibar: results[0],
-        home: results[1],
-      };
+      return {sibar: results[0], home: results[1]};
     }).then(({ sibar, home }) => {
       return dispatch({
         type: SET_DATA_FOR_HOME,

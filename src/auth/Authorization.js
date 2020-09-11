@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { matchRoutes } from "react-router-config";
 import {RoutesUtils} from 'utils';
 import AccessDeny from 'router/common/AccessDeny';
+import { connect } from 'react-redux';
 
 class Authorization extends Component {
 
@@ -23,15 +24,19 @@ class Authorization extends Component {
   }
 
   /*getDerivedStateFromProps nó được gọi khi component được mount lần đầu tiên,
-     và trong mỗi lần props thay đổi.
+     và trong mỗi lần props hoặc state thay đổi.
      Return ra một state mới sau đó nhảy xuống shouldComponentUpdate
   */
   static getDerivedStateFromProps(props, state) {
-    const {location} = props;
+    const {location, userData} = props;
     const {pathname} = location;
     const matched = matchRoutes(state.routes, pathname)[0];
-    return {
-      accessGranted: matched ? RoutesUtils.hasPermision(matched.route.auth, []) : true
+    if(matched.route.auth.length === 0 && userData.listUserRules.length > 0 && pathname === '/login') {
+      return { accessGranted: !state.accessGranted }
+    } else {
+      return {
+        accessGranted: matched ? RoutesUtils.hasPermision(matched.route.auth, userData.listUserRules) : true
+      }
     }
   }
 
@@ -40,6 +45,8 @@ class Authorization extends Component {
   // getSnapshotBeforeUpdate các giá trị return từ hàm này sẽ đưa cho hàm
   // componentDidUpdate(prevProps, prevState, snapshot) thông qua tham số snapshot
   shouldComponentUpdate(nextProps, nextState) {
+    // Nếu state accessGranted tiếp theo giống state hiện tại thì không
+    // render lại conponent, ngược lại thì render lại.
     return nextState.accessGranted !== this.state.accessGranted;
   }
 
@@ -50,20 +57,18 @@ class Authorization extends Component {
   }
 
   redirectRoute() {
-    const {userRole, history} = this.props;
-    let redirectUrl = '/user';
+    const {userData, history, location} = this.props;
+    const {pathname, state} = location;
+    let redirectUrl = state && state.redirectUrl ? state.redirectUrl : '/';
     /*
     User is guest
     Redirect to Login Page
     */
-    if (!userRole || userRole.length === 0) {
-      history.push({
-        pathname: "/login"
-      });
+    const {listUserRules} = userData;
+    if (!listUserRules || listUserRules.length === 0) {
+      history.push({ pathname: "/login", state: { redirectUrl: pathname } });
     } else {
-      history.push({
-        pathname: redirectUrl
-      });
+      history.push({pathname: redirectUrl});
     }
   }
 
@@ -74,4 +79,11 @@ class Authorization extends Component {
 }
 
 Authorization.contextType = AppContext;
-export default withRouter(Authorization);
+
+function mapStateToProps({auth}) {
+  return {
+    userData: auth.user
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Authorization))

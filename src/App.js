@@ -6,16 +6,20 @@ import AppContext from "./AppContext";
 import MainLayouts from "layouts/MainLayouts";
 import store from "store";
 import Authorization from 'auth/Authorization';
+import Auth from 'auth/Auth';
+import history from "@history";
 
 function App() {
   return (
     <AppContext.Provider value={routes}>
       <Provider store={store}>
-        <Router>
-          <Authorization>
-            <MainLayouts />
-          </Authorization>
-        </Router>
+        <Auth>
+          <Router history={history}>
+            <Authorization>
+              <MainLayouts />
+            </Authorization>
+          </Router>
+        </Auth>
       </Provider>
     </AppContext.Provider>
   );

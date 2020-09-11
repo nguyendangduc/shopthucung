@@ -4,14 +4,17 @@ class RoutesUtils {
   authRules: Rule của file route config.
   useRules: Rule của người dùng hiện tại.
    */
-  static hasPermision(authRules, useRules) {
-    if(authRules === null || authRules.length === 0 || authRules === undefined) {
+  static hasPermision(authArr, userRole)
+  {
+    if(authArr === '*'){
+      return true;
+    } else if ( authArr === null || authArr === undefined || authArr.length === 0 ) {
       return true;
     } else {
-      if ( useRules && Array.isArray(useRules) ) {
-        return (useRules.indexOf("ROLE_ADMIN") !== -1) || authRules.some(r => useRules.indexOf(r) >= 0);
+      if ( userRole && Array.isArray(userRole) ) {
+        return (userRole.indexOf("RULE_ADMIN") !== -1) || authArr.some(r => userRole.indexOf(r) >= 0);
       }
-      return authRules.includes(useRules);
+      return authArr.includes(userRole);
     }
   }
 

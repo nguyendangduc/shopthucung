@@ -1,0 +1,15 @@
+{
+  "errorCode": 200,
+  "message": "Success",
+  "data": {
+    "listUserRules": ["RULE_DBA"],
+    "user": {
+      "id": 100,
+      "userName": "react-js",
+      "FullName": "React T3h",
+      "phone": "09864545445",
+      "email": "anyemail@gmail.com"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwLCJ1c2VyTmFtZSI6InJlYWN0LWpzIiwiRnVsbE5hbWUiOiJSZWFjdCBUM2giLCJwaG9uZSI6IjA5ODY0NTQ1NDQ1IiwiZW1haWwiOiJhbnllbWFpbEBnbWFpbC5jb20ifQ.QO6SIaHx0nMI_r74Fdp4_x5cJr9prbGLbBVRlsx9BSQ"
+  }
+}
