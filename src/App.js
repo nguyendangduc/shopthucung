@@ -7,14 +7,13 @@ import MainLayouts from "layouts/MainLayouts";
 import store from "store";
 import Authorization from 'auth/Authorization';
 import Auth from 'auth/Auth';
-import history from "@history";
 
 function App() {
   return (
     <AppContext.Provider value={routes}>
       <Provider store={store}>
         <Auth>
-          <Router history={history}>
+          <Router>
             <Authorization>
               <MainLayouts />
             </Authorization>

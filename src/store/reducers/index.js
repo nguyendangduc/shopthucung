@@ -2,8 +2,6 @@ import { combineReducers } from "redux";
 import settings from "./settings";
 import auth from "auth/store/reducers";
 import { reducer as reduxFormReducer } from 'redux-form';
-//import _ from '@lodash';
-
 import { GET_MESSAGE, SET_LAYOUT, SET_DATA_FOR_HOME } from "../actions";
 
 const initState = {

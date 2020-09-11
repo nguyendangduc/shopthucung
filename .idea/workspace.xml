@@ -2,25 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3db62ee6-e177-40c5-9444-7ec10fdc403b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/@history.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/@lodash/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-api/home/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/home/GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-api/menu/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/menu/GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-api/sibar/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/sibar/GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-api/user/t3h/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock-api/user/t3h/GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/@history.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/Authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Authorization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/const/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/MainLayouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/MainLayouts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/common/AccessDeny.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/common/AccessDeny.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/common/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/common/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Router/PageOne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Router/PageThere.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Router/PageTwo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Router/Router.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/RoutesUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/RoutesUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +62,7 @@
       <workItem from="1599266049934" duration="1229000" />
       <workItem from="1599478644578" duration="35000" />
       <workItem from="1599481459895" duration="36000" />
-      <workItem from="1599837001992" duration="7164000" />
+      <workItem from="1599837001992" duration="7571000" />
     </task>
     <servers />
   </component>
