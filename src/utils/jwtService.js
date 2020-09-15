@@ -1,6 +1,13 @@
 import RequestUtils from "./RequestUtils";
+import RoutesUtils from './RoutesUtils';
 
-class jwtService {
+class jwtService extends RoutesUtils.EventEmiter {
+
+  init() {
+    const token = this.getAccessToken();
+    this.emit("TOKEN", token)
+  }
+
   siginWithUsernameAndPassword = (username, password) => {
     return RequestUtils.Post("/api/auth", {
       username: username,

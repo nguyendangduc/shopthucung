@@ -1,5 +1,5 @@
+import React from 'react';
 import {authRoutes} from 'auth'
-import Home from './Home'
 
 export const HomeConfig = {
   settings: {
@@ -10,7 +10,7 @@ export const HomeConfig = {
   routes: [
     {
       path: '/',
-      component: Home
+      component: React.lazy( () => import('./Home'))
     }
   ]
 }

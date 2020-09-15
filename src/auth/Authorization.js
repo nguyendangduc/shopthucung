@@ -58,6 +58,7 @@ class Authorization extends Component {
 
   redirectRoute() {
     const {userData, history, location} = this.props;
+    console.log("location", location);
     const {pathname, state} = location;
     let redirectUrl = state && state.redirectUrl ? state.redirectUrl : '/';
     /*

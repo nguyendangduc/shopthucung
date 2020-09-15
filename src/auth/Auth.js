@@ -23,20 +23,25 @@ class Auth extends Component {
   }
 
   checkLogin = () => new Promise(resolve => {
-    const token = jwtService.getAccessToken();
-    if(token != null) {
-      // Đăng nhập với token
-      jwtService.siginWithToken(token).then(res => {
-        if(res.errorCode === SUCCESS_CODE){
-          this.props.setUserData(res.data);
-          resolve();
-        }
-      })
-    }
-    return Promise.resolve();
+    let _this = this;
+    jwtService.on("TOKEN", function(token){
+      if(token != null) {
+        // Đăng nhập với token
+        jwtService.siginWithToken(token).then(res => {
+          console.log("this", this);
+          if(res.errorCode === SUCCESS_CODE){
+            _this.props.setUserData(res.data);
+            resolve();
+          }
+        })
+      }
+    });
+    jwtService.init();
+    resolve();
   });
 
   render() {
+    console.log("this.state.waitForLogin", this.state.waitForLogin);
     return <div>{this.state.waitForLogin ? null : this.props.children}</div>;
   }
 }

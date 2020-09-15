@@ -1,5 +1,35 @@
-class RoutesUtils {
+class EventEmiter {
+  constructor () {
+    this.events = {}
+  }
 
+  _getEventByName (eventName) {
+    if(typeof this.events[eventName] === 'undefined'){
+      this.events[eventName] = new Set();
+    }
+    return this.events[eventName];
+  }
+
+  // class.on('data', function(listData){
+  //   
+  // })
+  on (eventName, fn) {
+    this._getEventByName(eventName).add(fn);
+  }
+
+  emit(eventName, ...arg) {
+    this._getEventByName(eventName).forEach(function (fn){
+      fn.apply(this, arg);
+    }.bind(this));
+  }
+
+  removeListener(eventName, fn) {
+    this._getEventByName(eventName).delete(fn);
+  }
+}
+
+class RoutesUtils {
+  static EventEmiter = EventEmiter;
   /*
   authRules: Rule của file route config.
   useRules: Rule của người dùng hiện tại.
