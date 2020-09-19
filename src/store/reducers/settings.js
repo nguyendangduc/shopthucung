@@ -1,21 +1,22 @@
-import { SET_STATUS, USER_FETCH_SUCCEEDED } from "../actions/settings";
+import { USER_FETCH_SUCCEEDED, CATEGORY_FETCH_SUCCEEDED } from "../actions/settings";
 
 const initState = {
   status: {},
-  userSaga: []
+  userSaga: {},
+  category: {}
 };
 
 const settings = (state = initState, action) => {
   switch (action.type) {
-    case SET_STATUS:
-      return {
-        ...state,
-        status: action.payload,
-      };
     case USER_FETCH_SUCCEEDED:
       return {
         ...state,
         userSaga: action.payload,
+      };
+    case CATEGORY_FETCH_SUCCEEDED:
+      return {
+        ...state,
+        category: action.payload,
       };
     default:
       return state;

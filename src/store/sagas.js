@@ -1,24 +1,24 @@
-import { call, put, takeLatest, all } from "redux-saga/effects";
+import { call, put, takeLatest, all, takeEvery } from "redux-saga/effects";
 import {fetchCategory} from './saga-api/category';
 import {RequestUtils} from "utils";
+import * as Actions from 'store/actions/settings';
 
 export function fetchPostsApi(reddit) {
-  return RequestUtils.Get('/user');
+  return RequestUtils.Get('/api/user/t3h');
 }
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUser(data) {
   try {
-    console.log("data", data);
-    const user = yield call(fetchPostsApi, "hanoi");
-    yield put({ type: "USER_FETCH_SUCCEEDED", payload: user });
+    const user = yield call(fetchPostsApi, data);
+    yield put({ type: Actions.USER_FETCH_SUCCEEDED, payload: user });
   } catch (e) {
-    yield put({ type: "USER_FETCH_FAILED", message: e.message });
+    console.log(e);
   }
 }
 
 function* actionFetchUser() {
-  yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
+  yield takeEvery(Actions.USER_FETCH_REQUESTED, fetchUser);
 }
 /*
   Ý tưởng của Saga.

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { matchRoutes } from "react-router-config";
 import { useSelector, useDispatch } from "react-redux";
 import { setLayout, setDataForHome } from "store/actions";
-import { getUsers } from 'store/actions/settings'
+import { getUsers, getCategory } from 'store/actions/settings'
 
 // ben trong withRouter se goi ntn.
 // <MainLayouts {...props} />
@@ -20,6 +20,7 @@ const MainLayouts = (props) => {
   useEffect(() => {
     dispatch(setDataForHome());
     dispatch(getUsers('huunv'));
+    dispatch(getCategory('category'))
   }, []);
 
   const routes = useContext(AppContext);

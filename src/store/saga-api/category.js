@@ -1,17 +1,17 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
 import { RequestUtils } from "utils";
+import * as Actions from 'store/actions/settings';
 
 export function fetchPostsApi(reddit) {
-    return RequestUtils.Get('/user/t3h');
+    return RequestUtils.Get('/api/user/t3h');
 }
 
 function* category(data) {
     try {
-        console.log("data", data);
-        const user = yield call(fetchPostsApi, "category");
-        yield put({ type: "USER_FETCH_SUCCEEDED", payload: user });
+        const categories = yield call(fetchPostsApi, data);
+        yield put({ type: Actions.CATEGORY_FETCH_SUCCEEDED, payload: categories });
     } catch (e) {
-        yield put({ type: "USER_FETCH_FAILED", message: e.message });
+        console.log(e);
     }
 }
 
@@ -32,5 +32,5 @@ function* category(data) {
   ]
 */
 export function* fetchCategory() {
-    yield takeLatest("USER_FETCH_REQUESTED", category);
+    yield takeEvery(Actions.CATEGORY_FETCH_REQUESTED, category);
 }

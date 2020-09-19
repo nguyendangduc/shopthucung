@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3db62ee6-e177-40c5-9444-7ec10fdc403b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/saga-api/category.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/Authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Authorization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Guests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Guests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/MainLayouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/MainLayouts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/home/HomeConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/home/HomeConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/reducers/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/RoutesUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/RoutesUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/jwtService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/jwtService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/saga-api/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/saga-api/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +62,8 @@
       <workItem from="1599481459895" duration="36000" />
       <workItem from="1599837001992" duration="7760000" />
       <workItem from="1600083088380" duration="8824000" />
+      <workItem from="1600428246890" duration="2480000" />
+      <workItem from="1600481493932" duration="881000" />
     </task>
     <servers />
   </component>
