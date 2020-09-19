@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3db62ee6-e177-40c5-9444-7ec10fdc403b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/socketServer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/socket/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/MainLayouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/MainLayouts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/reducers/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/saga-api/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/saga-api/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +40,13 @@
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/component/Content" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/router" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/Content" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -63,7 +67,7 @@
       <workItem from="1599837001992" duration="7760000" />
       <workItem from="1600083088380" duration="8824000" />
       <workItem from="1600428246890" duration="2480000" />
-      <workItem from="1600481493932" duration="881000" />
+      <workItem from="1600481493932" duration="1843000" />
     </task>
     <servers />
   </component>

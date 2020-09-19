@@ -1,9 +1,13 @@
-import { USER_FETCH_SUCCEEDED, CATEGORY_FETCH_SUCCEEDED } from "../actions/settings";
+import {
+  USER_FETCH_SUCCEEDED, CATEGORY_FETCH_SUCCEEDED,
+  DATA_FORM_SOCKET
+} from "../actions/settings";
 
 const initState = {
   status: {},
   userSaga: {},
-  category: {}
+  category: {},
+  socketId: null
 };
 
 const settings = (state = initState, action) => {
@@ -17,6 +21,11 @@ const settings = (state = initState, action) => {
       return {
         ...state,
         category: action.payload,
+      };
+    case DATA_FORM_SOCKET :
+      return {
+        ...state,
+        socketId: action.payload,
       };
     default:
       return state;
