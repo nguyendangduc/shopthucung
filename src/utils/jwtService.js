@@ -4,7 +4,11 @@ import RoutesUtils from './RoutesUtils';
 class jwtService extends RoutesUtils.EventEmiter {
 
   init() {
-    const token = this.getAccessToken();
+    this.handleAuthtication();
+  }
+
+  handleAuthtication = () => {
+    let token = this.getAccessToken();
     this.emit("TOKEN", token)
   }
 
@@ -16,7 +20,15 @@ class jwtService extends RoutesUtils.EventEmiter {
   };
 
   siginWithToken = token => {
-    return RequestUtils.Post("/api/token", {token: token});
+    return new Promise( (resolve, reject) => {
+      RequestUtils.Post("/api/token", {token: token}).then(res => {
+        if(res.errorCode === 200) {
+          resolve(res);
+        } else {
+          reject(res)
+        }
+      });
+    });
   }
 
   setSession = (access_token) => {

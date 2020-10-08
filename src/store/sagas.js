@@ -1,50 +1,63 @@
-import { call, put, takeLatest, all, takeEvery } from "redux-saga/effects";
-import {fetchCategory} from './saga-api/category';
-import {RequestUtils} from "utils";
-import * as Actions from 'store/actions/settings';
+import { call, put, takeEvery, takeLatest, all } from "redux-saga/effects";
 
 export function fetchPostsApi(reddit) {
-  return RequestUtils.Get('/api/user/t3h');
+  return fetch(`https://www.reddit.com/r/${reddit}.json`)
+    .then((response) => response.json())
+    .then((json) => json.data.children.map((child) => child.data));
 }
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* fetchUser(data) {
+// async - await
+// Promise: post.then(res => {});
+// const data = await callApi();
+// console.log(data);
+function* fetchUser() {
   try {
-    const user = yield call(fetchPostsApi, data);
-    yield put({ type: Actions.USER_FETCH_SUCCEEDED, payload: user });
+    const user = yield call(fetchPostsApi, "hanoi");
+    console.log("user in sags", user);
+    yield put({ type: "USER_FETCH_SUCCEEDED", payload: user });
   } catch (e) {
-    console.log(e);
+    yield put({ type: "USER_FETCH_FAILED", payload: e.message });
   }
 }
 
-function* actionFetchUser() {
-  yield takeEvery(Actions.USER_FETCH_REQUESTED, fetchUser);
+function* fetchCategory() {
+  try {
+    const categore = yield call(fetchPostsApi, "category");
+    yield put({ type: "FETCH_CATEGORY_SUCCESS", payload: categore });
+  } catch (e) {
+    console.log("Fecth category faile", e);
+  }
 }
-/*
-  Ý tưởng của Saga.
-  - Quản lý effect dựa vào các hellper: Fork, Call, Take....
-  - Saga trả về logic ở dạng đối tượng hay còn gọi là effect. Saga sử dụng các method hellper để trả về các effect.
-    sau đó gửi cho saga middelware để xử lý các effect.
 
-  Các khái niệm chính.
-  function* là khái niệm Generator function trong es6.
-  Fork(): sử dụng cơ chế non - blocking call trên function (Có thế kích hoạt nhiều bộ theo dõi một lúc
-    hoặc dispatch nhiều action cùng lúc),
-  Call(): Gọi function. Nếu nó return về một promise, tạm dừng saga cho đến khi promise được giải quyết
-  Take(): tạm dừng cho đến khi nhận được action
-  Put(): Dùng để dispatch một action
-  takeEvery(): Theo dõi một action nào đó thay đổi thì gọi một saga nào đó
-  takeLastest(): Thay vì sử dụng takeEvery chúng ta có thể sử dụng takeLatest.
-  takeLatest không cho phép gọi nhiều lần cuẩ một action nào đó.
-  VD: khi dispatch một action "USER_FETCH_REQUESTED" nhiều lần, các action sẽ nằm chờ để được xử lý,
-  khi đó các action chờ xử lý sẽ bị hủy hết và chỉ action cuối cùng được chạy.
-  yield(): Có nghĩa là chạy tuần tự khi nào trả ra kết quả mới thực thi tiếp
-  Select(): Chạy một selector function để lấy data từ state
-  all(): Cho phép combi nhiều saga
-*/
-export default function* rootSaga() {
-  yield all([
-    actionFetchUser(),
-    fetchCategory()
-  ]);
+function* takeUser() {
+  yield takeEvery("USER_FETCH_INIT", fetchUser);
 }
+
+function* takeCategory() {
+  yield takeEvery("FETCH_CATEGORY_INIT", fetchCategory);
+}
+
+/*
+  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
+  Allows concurrent fetches of user.
+*/
+function* mySaga() {
+  yield all ([
+    takeUser(),
+    takeCategory()
+  ])
+}
+
+/*
+  Alternatively you may use takeLatest.
+  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
+  dispatched while a fetch is already pending, that pending fetch is cancelled
+  and only the latest one will be run.
+*/
+/*
+function* mySaga() {
+  yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
+}
+*/
+export default mySaga;

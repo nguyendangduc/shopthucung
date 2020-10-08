@@ -1,32 +1,43 @@
 import {
-  USER_FETCH_SUCCEEDED, CATEGORY_FETCH_SUCCEEDED,
-  DATA_FORM_SOCKET
+  SET_STATUS, USER_FETCH_SUCCEEDED, USER_FETCH_FAILED,
+  FETCH_CATEGORY_SUCCESS, DATA_FORM_SOCKET
 } from "../actions/settings";
 
 const initState = {
   status: {},
-  userSaga: {},
-  category: {},
-  socketId: null
+  user: [],
+  category: [],
+  message: '',
+  dataSocket: null
 };
 
 const settings = (state = initState, action) => {
   switch (action.type) {
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.payload,
+      };
     case USER_FETCH_SUCCEEDED:
       return {
         ...state,
-        userSaga: action.payload,
-      };
-    case CATEGORY_FETCH_SUCCEEDED:
+        user: action.payload
+      }
+    case FETCH_CATEGORY_SUCCESS: 
       return {
         ...state,
-        category: action.payload,
-      };
-    case DATA_FORM_SOCKET :
+        category: action.payload
+      }
+    case USER_FETCH_FAILED :
       return {
         ...state,
-        socketId: action.payload,
-      };
+        message: action.payload
+      }
+    case DATA_FORM_SOCKET : 
+      return {
+        ...state,
+        dataSocket: action.payload
+      }
     default:
       return state;
   }
