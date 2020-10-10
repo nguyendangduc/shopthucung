@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3db62ee6-e177-40c5-9444-7ec10fdc403b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mock-api/search/GET.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/Search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/SearchConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/store/actions/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/store/actions/searchs.actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/store/reducers/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/search/store/reducers/searchs.reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/withReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/header/FnHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/header/FnHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/const/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/Guests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Guests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/MainLayouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/MainLayouts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/common/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/common/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/jwtService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/jwtService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,17 +46,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mock-api" />
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/router" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/component/Content" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mock-api" />
+      <recent name="$PROJECT_DIR$/src/router/search" />
+      <recent name="$PROJECT_DIR$/src/store" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -60,6 +80,7 @@
       <workItem from="1600083088380" duration="8824000" />
       <workItem from="1600428246890" duration="2480000" />
       <workItem from="1600481493932" duration="3121000" />
+      <workItem from="1602293671861" duration="3839000" />
     </task>
     <servers />
   </component>
@@ -71,21 +92,21 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="474" y="181" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.806@0.23.1440.806" timestamp="1599264823747" />
-    <state width="1386" height="207" key="GridCell.Tab.0.bottom" timestamp="1600106814251">
+    <state width="1386" height="207" key="GridCell.Tab.0.bottom" timestamp="1602295433842">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
-    <state width="1386" height="207" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1600106814251" />
-    <state width="1386" height="207" key="GridCell.Tab.0.center" timestamp="1600106814249">
+    <state width="1386" height="207" key="GridCell.Tab.0.bottom/0.23.1440.806@0.23.1440.806" timestamp="1602295433842" />
+    <state width="1386" height="207" key="GridCell.Tab.0.center" timestamp="1602295433841">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
-    <state width="1386" height="207" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1600106814249" />
-    <state width="1386" height="207" key="GridCell.Tab.0.left" timestamp="1600106814247">
+    <state width="1386" height="207" key="GridCell.Tab.0.center/0.23.1440.806@0.23.1440.806" timestamp="1602295433841" />
+    <state width="1386" height="207" key="GridCell.Tab.0.left" timestamp="1602295433840">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
-    <state width="1386" height="207" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1600106814247" />
-    <state width="1386" height="207" key="GridCell.Tab.0.right" timestamp="1600106814250">
+    <state width="1386" height="207" key="GridCell.Tab.0.left/0.23.1440.806@0.23.1440.806" timestamp="1602295433840" />
+    <state width="1386" height="207" key="GridCell.Tab.0.right" timestamp="1602295433842">
       <screen x="0" y="23" width="1440" height="806" />
     </state>
-    <state width="1386" height="207" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1600106814250" />
+    <state width="1386" height="207" key="GridCell.Tab.0.right/0.23.1440.806@0.23.1440.806" timestamp="1602295433842" />
   </component>
 </project>

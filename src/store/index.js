@@ -18,4 +18,15 @@ const store = createStore(
   applyMiddleware(...middelware)
 );
 sagaMiddleware.run(mySaga);
+
+store.asyncReducers = {};
+export const injectReducer = (key, reducer) => {
+  if ( store.asyncReducers[key] ) {
+    return;
+  }
+  store.asyncReducers[key] = reducer;
+  store.replaceReducer(makeRootReducer(store.asyncReducers));
+  return store;
+};
+
 export default store;
