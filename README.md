@@ -1,18 +1,13 @@
 ### En ####
 Step by step.
-Step 1: Run Mock-api with: node moc-api.js.
+Step 1: npm install
 
-Step 2: Run Socket Io for middleware custom of redux: node socketServer.js.
+Step 2: run json-server:  json-server --watch data.json
 
-Step 3: Run react-js app: yarn install && yarn start
+Step 3: run moc-api: node moc-api.js
 
+Step 4: npm start
 ### Vn ####
-Các bước chạy.
-Bước 1: Chay Moc-api bằng lệnh: node moc-api.js.
-
-Bước 2: Chạy Socket Io cho việc tùy chọn một middleware cho redux: node socketServer.js.
-
-Bước 3: Chạy ứng dùng react: yarn install && yarn start
 
 ### Note ####
 Please email me if you have any questions: long.huu.100@gmail.com
