@@ -1,0 +1,263 @@
+@media (max-width: 1023px) {
+    .hide-on-mobile-tablet {
+        display: none;
+    }
+    .hidden-on-mobile-tablet {
+        display: none;
+    }
+    :root {
+        --header-height: 68px;
+        --header-navbar-height: 0px;
+    }
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* giao dien bi vỡ */
+        z-index: 10;
+    }
+    .header__cart-list {
+        position: fixed;
+        top: var(--header-height);
+        right: 0;
+        width: 100%;
+        /* 100% so với cha mà cha nó lúc này là cửa sổ  */
+    }
+    .header__cart-list::before {
+        display: none;
+    }
+    .app__container {
+        margin-top: calc(var(--header-height) + var(--header-sort-bar-height));
+        /* position: fixed; là làm cho cái header lên 1 mặt phảng khác-giống float nên cái app__contaier nó sẽ k bị phụ thuộc vào thằng header nó sẽ chiếm khoảng troogns còn lại  */
+    }
+    .header__sort-bar {
+        display: flex;
+    }
+    .mobile-category {
+        display: block;
+    }
+    /* =====================detail===================== */
+    #detail .main {
+        margin-top: calc(var(--header-height) + var(--header-sort-bar-height));
+    }
+    #detail .main .product-description .bar{
+        display: none;
+    }
+    #detail .product-information {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 0;
+    }
+    #detail .product-information p {
+        margin: 0.6rem;
+    }
+    #home .banner {
+        margin-top: var(--header-with-search-height);
+    }
+    /* ====================purchase=============== */
+    #purchase .main {
+        margin-top: calc(var(--header-with-search-height) + var(--header-sort-bar-height));
+
+    }
+      /* ==================cart==================== */
+  #cart .main {
+      margin-top: calc(var(--header-height) + var(--header-sort-bar-height) + 4px);
+  }
+}
+@media (max-width:739px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    .hidden-on-mobile {
+        display: none;
+    }
+    .header-width-search {
+        justify-content: space-between;
+
+    }
+    .header__mobile-search {
+        display: block;
+        padding: 0 20px;
+    }
+    .header__mobile-search-checkbox:checked ~ .header__search {
+        display: flex;
+    }
+    /* cái này tái sử dựng được nên sẽ overright css     */
+    .header__search {
+        position: fixed;
+        z-index: 1;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        box-shadow: 0 1px 2px rgba(0, 0,0,0.05);
+        height: 46px;
+        padding: 0 8px;
+        animation: mobileSearchSileDown ease-in-out 0.3s; 
+    }
+    @keyframes mobileSearchSileDown {
+            from {
+                opacity: 0;
+                top: calc(var(--header-height) / 2);
+            }
+            to {
+                opacity: 1;
+                top: var(--header-height);
+
+            }
+        }
+    .header__search-history {
+        /* left: -8px;
+        width: 100vw;
+        top: calc(100% + 4px); */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        top: calc(var(--header-height) + var(--header-sort-bar-height) + 4px);
+        width: 100%;
+        left: 0;
+        /* nen su dung cach duoi vi neu su dung cach tren cho left=-8 la do the cha lui vao  */
+    }
+   
+    .header__logo {
+        width: unset;
+        /* làm cho mất chiều rộng */
+        line-height: 0;
+
+    }
+    .header-logo-img {
+        width: 100px;
+    }
+    .header__cart {
+        width: unset;
+        padding: 0 20px;
+
+    }
+
+    #home .banner #slider {
+        --width:100%;
+        --height: 26rem;
+
+    }
+    #home .slide__info {
+        z-index: 2;
+        position: relative;
+    }
+    #home .banner .slide__img--default {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    #slider .list-slider-box {
+       
+    }
+    #slider .slider-with-ctr {
+        width: 100%;
+    }
+    #home .banner #slider .slider-with-ctr .slider-btn {
+        display: none;
+    }
+    #home .header-middle-content {
+        flex-direction: column;
+    }
+    #home .banner #slider .slide-content {
+        flex-direction: column;
+    }
+    #home .banner .slide__img {
+        width: 10rem;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0%;
+        top: unset;
+        
+    }
+    #home .header-middle-content .menu-left {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    #home .header-middle-content .menu-right .header-menu{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+  
+    
+    .footer__content {
+        padding: 0 16px;
+    }
+    .footer__download-qr {
+        width: 70px;
+        height: 70px;
+    }
+    .footer__download-apps {
+        margin-left: 10px;
+    }
+    .footer__download-app-img {
+        height: 14px;
+    }
+
+    /* =====================detail============================ */
+    /* ==========================cart========================== */
+    #cart .main .cart-tb-body__btn .btn {
+        min-width: 2rem;
+        width: 2rem;
+        height: 2rem;
+        position: relative;
+        right: 1rem;
+    }
+    #cart .cart-form-wrap {
+        width: 100%;
+        min-width: unset;
+        max-width: 50rem;
+    }
+    .cart-tb-body__quantity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cart-tb-body__quantity button {
+        width: 2rem;
+        height: 2rem;
+    }
+
+}
+@media (min-width: 740px) and (max-width: 1023px) {
+    .hide-on-tablet {
+        display: none;
+    }
+    .hidden-on-tablet {
+        display: none !important;
+    }
+    .tl-mrt20 {
+        margin-top: 20px;
+    }
+    .header__cart {
+        width: 86px;
+        text-align: right;
+    }
+        .header__cart-list {
+        padding: 0 calc((100% - 644px) / 2);
+    }
+    #home .banner #slider {
+        --width: 68rem;
+        --height: 26rem;
+    }
+    #home .slide-content {
+        position: relative
+    }
+    #home .banner .slide__img--default {
+        position: absolute;
+        right: 0;
+        width: 80%;
+    }
+    #home .banner .slide__img {
+        position: absolute;
+        width: 10rem;
+        left: unset;
+        top: unset;
+        bottom: 0;
+        
+    }
+  /* ==================cart==================== */
+
+}

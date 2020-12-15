@@ -1,50 +1,34 @@
-import React, {Component} from "react";
-import jwtService from 'utils/jwtService';
-import {setUserData} from 'auth/store/actions/user.action';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-
+import React, { Component } from 'react';
+import JwtService from 'utils/JwtService';
+import {set_user_data,check_auth_by_token} from 'store/actions/authAction';
+import {connect} from 'react-redux'
 class Auth extends Component {
-
-    state = {
-        waitForLogin: true,
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            waitForCheckLogin: true,
+        }
     }
-
-    componentDidMount() {
-        return Promise.all([
-            this.jwtCheck()
-        ]).then(() => {
-            this.setState({waitForLogin: false})
-        })
+    async componentDidMount() {
+        console.log(this.props)
+        await this.props.authByToken()
+        this.setState({ waitForCheckLogin: false }) 
     }
-
-    jwtCheck = () => new Promise(resolve => {
-        jwtService.on("TOKEN", (token) => {
-            if (token != null) {
-                // Đăng nhập với token
-                jwtService.siginWithToken(token).then(async (res) => {
-                    await this.props.setUserData(res.data);
-                    resolve();
-                }).catch(error => {
-                    resolve();
-                })
-            } else {
-              resolve();
-            }
-        });
-        jwtService.init();
-        return Promise.resolve();
-    });
-
+    
     render() {
-        return <div>{this.state.waitForLogin ? null : this.props.children}</div>;
+        return (
+            <div>
+                { this.state.waitForCheckLogin ? null : this.props.children}
+            </div>
+        );
     }
 }
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        setUserData: setUserData
-    }, dispatch);
+const mapDispatchToProps = (dispatch) => ({
+    setUser: (user) => dispatch(set_user_data(user)),
+    authByToken: () => dispatch(check_auth_by_token())
+})
+const mapStateToProps = (state) => {
+    return state.userReducer
 }
-
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const AccessDeny = (props) => {
-  return <p>AccessDeny Route</p>;
-};
+function AccessDeny(props) {
+    return (
+        <div>
+            Access Deny
+        </div>
+    );
+}
 
 export default AccessDeny;

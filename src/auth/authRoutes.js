@@ -1,7 +1,6 @@
 const authRoutes = {
-  admin: '*',
-  user: ['RULE_USER', 'RULE_DBA'],
-  onlyGuest: []
+    admin: ['RULE_ADMIN'],
+    user: ['RULE_USER', 'RULE_DBA'],
+    onlyGuest: []
 }
-
-export default authRoutes;
+export default authRoutes

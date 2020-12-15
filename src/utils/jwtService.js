@@ -1,48 +1,25 @@
-import RequestUtils from "./RequestUtils";
-import RoutesUtils from './RoutesUtils';
-
-class jwtService extends RoutesUtils.EventEmiter {
-
-    init() {
-        this.handleAuthtication();
+import EventEmitter from './EventEmitter'
+import axios from 'axios'
+import { GATEWAY2, API } from 'const/api'
+class JwtService extends EventEmitter {
+   
+    loginWithToken() {
+        const token = window.localStorage.getItem('token')
+        return axios.post(GATEWAY2 + API.TOKEN, { token: token })
+        .then(res => {
+            return res.data
+        }).catch(err => console.log(err))
+       //return 1 promise, dung async cung return promise, RequestUtils cung retrun 1promise 
     }
-
-    handleAuthtication = () => {
-        let token = this.getAccessToken();
-        this.emit("TOKEN", token)
-    }
-
-    siginWithUsernameAndPassword = (username, password) => {
-        return RequestUtils.Post("/api/auth", {
-            username: username,
-            password: password,
-        });
-    };
-
-    siginWithToken = token => {
-        return new Promise((resolve, reject) => {
-            RequestUtils.Post("/api/token", {token: token}).then(res => {
-                if (res.errorCode === 200) {
-                    resolve(res);
-                } else {
-                    reject(res)
-                }
-            });
-        });
-    }
-
-    setSession = (access_token) => {
-        if (access_token) {
-            localStorage.setItem("jwt_access_token", access_token);
-        } else {
-            localStorage.removeItem("jwt_access_token");
-        }
-    };
-
-    getAccessToken = () => {
-        return window.localStorage.getItem("jwt_access_token");
-    };
 }
+const instance = new JwtService()
+export default instance
+// const dataUser = this.on("TOKEN", async (token) => {
+//     const userData = await axios.post(GATEWAY2 + API.AUTH, { token: token })
+//     console.log(userData.data.data)
+//     return userData.data.data
 
-const intansce = new jwtService();
-export default intansce;
+// })
+// const tokenStorage = [...JSON.stringify(window.localStorage.getItem('token'))]
+// this.emit("TOKEN", tokenStorage)
+// return dataUser

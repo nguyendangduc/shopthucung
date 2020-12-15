@@ -1,26 +1,32 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import routes from "router/common/routes";
-import AppContext from "./AppContext";
-import MainLayouts from "layouts/MainLayouts";
-import store from "store";
-import Authorization from 'auth/Authorization';
-import Auth from 'auth/Auth';
-
+import React, { Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import { Provider } from 'react-redux'
+import AppContext from 'AppContext';
+import Authorization from 'auth/Authorization'
+import routes from 'router/common/routes'
+import store from 'store'
+import Auth from 'auth/Auth'
 function App() {
   return (
-    <AppContext.Provider value={routes}>
-      <Provider store={store}>
-        <Auth>
-          <Router>
-            <Authorization>
-              <MainLayouts />
-            </Authorization>
-          </Router>
-        </Auth>
-      </Provider>
-    </AppContext.Provider>
+    <>
+      <AppContext.Provider value={routes} >
+        <Provider store={store} >
+          <Auth>
+            <BrowserRouter>
+              <Authorization>
+                <Suspense fallback={<div>Loading...!</div>}>
+                  {renderRoutes(routes)}
+                </Suspense>
+              </Authorization>
+            </BrowserRouter>
+          </Auth>
+        </Provider>
+      </AppContext.Provider>
+
+    </>
+
+
   );
 }
 

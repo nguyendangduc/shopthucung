@@ -1,2 +1,2 @@
-export * from './config'
-export * from './function'
+export * from './actionConst'
+export * from './api'

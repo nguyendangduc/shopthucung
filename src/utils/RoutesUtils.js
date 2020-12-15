@@ -1,74 +1,64 @@
-class EventEmiter {
-  constructor () {
-    this.events = {}
-  }
-
-  _getEventByName (eventName) {
-    if(typeof this.events[eventName] === 'undefined'){
-      this.events[eventName] = new Set();
-    }
-    return this.events[eventName];
-  }
-
-  // class.on('data', function(listData){
-  //   
-  // })
-  on (eventName, fn) {
-    this._getEventByName(eventName).add(fn);
-  }
-
-  emit(eventName, ...arg) {
-    this._getEventByName(eventName).forEach(function (fn){
-      fn.apply(this, arg);
-    }.bind(this));
-  }
-
-  removeListener(eventName, fn) {
-    this._getEventByName(eventName).delete(fn);
-  }
-}
-
 class RoutesUtils {
-  static EventEmiter = EventEmiter;
-  /*
-  authRules: Rule của file route config.
-  useRules: Rule của người dùng hiện tại.
-   */
-  static hasPermision(authArr, userRole)
-  {
-    if(authArr === '*'){
-      return true;
-    } else if ( authArr === null || authArr === undefined || authArr.length === 0 ) {
-      return true;
-    } else {
-      if ( userRole && Array.isArray(userRole) ) {
-        return (userRole.indexOf("RULE_ADMIN") !== -1) || authArr.some(r => userRole.indexOf(r) >= 0);
-      }
-      return authArr.includes(userRole);
-    }
-  }
+    
+  static hasPermission(authArr, userRole) {     
+    if (!authArr || authArr.length === 0) {
+     return true;
+   } else { // neu routes co quyền thì phải check quyền user 
+     if (userRole) {
+       if (userRole === "RULE_ADMIN") {// nếu useRole là 1 string này thì ko quan tâm route có rule ko,ko quan tâm Rule có trùng ko, turn true, gs rule của Route chỉ có mỗi RULE_USER thì nếu k có dòng này thì 2 quyền ko giống nhau à
+         return true
+       }
+       if(authArr.includes(userRole)) {  // return authArr.includes(userRole);// neu userRole là 1 pt(String) chứ ko phải 1 mảng
+         return true
+       }
+       
+       if(Array.isArray(userRole))// if quyền người dùng là array
+         return (userRole.includes("RULE_ADMIN")) || userRole.some(r => authArr.includes(r));
+     
 
-  static generaRouteFromConfig(configs, defaultAuth) {
-    let allRouters = [];
-    configs.forEach((config) => {
-      allRouters = [...allRouters, ...this.setRoute(config, defaultAuth)];
-    });
-    return allRouters;
-  }
-
-  static setRoute(config, defaultAuth) {
-    let routes = [...config.routes];
-    if (config.settings || config.auth) {
-      routes = routes.map((route) => {
-        return {
-          ...route,
-          settings: config.settings,
-          auth: config.auth ? [...config.auth] : defaultAuth,
-        };
-      });
+     }// cau chuyen don canh sat , userRole la quan he cua minh vs thang em, authArr la dieu kien giam ho, doc lan luot quan he ra de canh sat duyet mang quyen giam ho 
+     // nếu quyền null undefine '' 0 false
+     return false
+   } 
+  
+ }
+    static isCustomerAccount(userRules) {
+        if(userRules) {
+            if(userRules === "RULE_USER") 
+            return true;
+            if(Array.isArray(userRules) && userRules.length > 0 ) {
+                return userRules.includes("RULE_USER")
+            }
+            return false;
+        }
+        return false;
     }
-    return [...routes];
-  }
+    static generateRoutesFromConfig(configs, defaultAuth) {
+        let allRouters = []
+        configs.forEach(config => {
+            allRouters = [...allRouters, ...this.setRoute(config, defaultAuth)]
+        });
+        return allRouters
+    }
+    static setRoute(config, defaultAuth) {
+        let routes = [...config.routes]
+            routes = routes.map(route => ({ ...route, settings: config.settings, auth: config.auth ? config.auth : defaultAuth }))
+        return routes
+    }
 }
 
-export default RoutesUtils;
+
+// muc dich render ra cai duoi
+// export const HomeConfig = [
+
+//     {
+//         path: '/about',
+//         component: About
+//     },
+//     {
+//         path: '/',
+//         component: Home,
+//          auth: []
+//     }
+// ]
+export default RoutesUtils
