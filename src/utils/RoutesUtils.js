@@ -3,21 +3,21 @@ class RoutesUtils {
   static hasPermission(authArr, userRole) {     
     if (!authArr || authArr.length === 0) {
      return true;
-   } else { // neu routes co quyền thì phải check quyền user 
+   } else { 
      if (userRole) {
-       if (userRole === "RULE_ADMIN") {// nếu useRole là 1 string này thì ko quan tâm route có rule ko,ko quan tâm Rule có trùng ko, turn true, gs rule của Route chỉ có mỗi RULE_USER thì nếu k có dòng này thì 2 quyền ko giống nhau à
+       if (userRole === "RULE_ADMIN") {
          return true
        }
-       if(authArr.includes(userRole)) {  // return authArr.includes(userRole);// neu userRole là 1 pt(String) chứ ko phải 1 mảng
+       if(authArr.includes(userRole)) {  
          return true
        }
        
-       if(Array.isArray(userRole))// if quyền người dùng là array
+       if(Array.isArray(userRole))
          return (userRole.includes("RULE_ADMIN")) || userRole.some(r => authArr.includes(r));
      
 
-     }// cau chuyen don canh sat , userRole la quan he cua minh vs thang em, authArr la dieu kien giam ho, doc lan luot quan he ra de canh sat duyet mang quyen giam ho 
-     // nếu quyền null undefine '' 0 false
+     }
+
      return false
    } 
   
