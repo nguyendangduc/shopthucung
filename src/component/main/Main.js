@@ -1,7 +1,7 @@
 import React from 'react';
-import Category from 'component/main/category/Category'
-import HotProduct from 'component/main/hotProduct/HotProduct'
-import FeatureProduct from 'component/main/featureProduct/FeatureProduct'
+import Category from 'component/category/Category';
+import HotProduct from 'component/main/HotProduct'
+import FeatureProduct from 'component/main/FeatureProduct'
 function Main(props) {
   return (
     <>

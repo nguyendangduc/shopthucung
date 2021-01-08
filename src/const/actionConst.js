@@ -31,7 +31,7 @@ export const AUTH_FALSE = "AUTH_FALSE"
 export const LOGOUT = "LOGOUT"
 export const SET_AUTH_TIMEOUT = "SET_AUTH_TIMEOUT"
 export const CHECK_AUTH_BY_TOKEN = "CHECK_AUTH"
-
+export const SET_MODAL = "SET_MODAL"
 
 
 

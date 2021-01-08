@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import Modal from "component/modal/Modal";
 import {useDispatch} from 'react-redux'
 import {logout} from 'store/actions/authAction';
+import {connect} from 'react-redux';
+import {set_modal} from 'store/actions/modalAction';
+import { handle_task_request } from 'store/actions/product/productAction'
+import {useHistory, Link} from 'react-router-dom'
 function Header(props) {
+  const history = useHistory('')
   const dispatch = useDispatch()
+  const [searchTxt, setSearchVal] = useState('')
+  const handleChange = (event) => {
+    setSearchVal(event.target.value)
+  }
   useEffect(() => {
 
   }, [])
-
+  const search = (event) => {
+    
+    history.push({ pathname:'/search/'+ searchTxt})
+   
+}
   const checkEmail = (email) => {
-    // const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-    // if (!filter.test(email)) {
-    //   email.focus
-    //   return false
 
-    // }
   }
-
   const login = () => {
     const email = document.querySelector(".authenticate-form--login .authenticate-form__input#email")
     const pass = document.querySelector(".authenticate-form--login .authenticate-form__input#pass")
@@ -129,10 +135,10 @@ function Header(props) {
               </a>
             </li>
             <li className="header__navbar-item header__navbar-item-login header__navbar-item--separate">
-              <a href="#" className="header__navbar-item-link ">Log-In</a>
+              <a href="#" className="header__navbar-item-link " onClick={props.showLogin}>Log-In</a>
             </li>
             <li className="header__navbar-item header__navbar-item-register">
-              <a href="#" className="header__navbar-item-link">registration</a>
+              <a href="#" className="header__navbar-item-link" onClick={props.showSignup}>registration</a>
             </li>
             <li className="header__navbar-item header__navbar-item-user">
               <div className="header__navbar-user-img" style={{ backgroundImage: 'url(https://ict-imgs.vgcloud.vn/2020/09/01/19/huong-dan-tao-facebook-avatar.jpg)' }}>
@@ -162,7 +168,7 @@ function Header(props) {
           <div className="header__search hide-on-mobile">
             <div className="header__search-input-wrap">
               {/* la cai bao bọc cho cái thêm vào ở trường hợp này là lịch sử tìm kiếm  */}
-              <input type="text" className="header__search-input" placeholder="Tìm sản phẩm,thương hiệu và tên shop" />
+              <input type="text" className="header__search-input" placeholder="Tìm sản phẩm,thương hiệu và tên shop" onChange={handleChange} value={searchTxt} name="searchTxt" />
               <div className="header__search-history">
                 <h3 className="header__search-history-headding">Lịch sử tìm kiếm</h3>
                 <ul className="header__search-history-list">
@@ -185,9 +191,12 @@ function Header(props) {
                 </li>
               </ul>
             </div>
-            <button className="header__search-btn">
+            <Link to={`/search/keyword/${searchTxt}`} >
+            <button className="header__search-btn"  >
               <i className="header__search-icon fas fa-search" />
             </button>
+                                </Link>
+            
           </div>
           <div className="header__cart">
             <div className="header__cart-wrap">
@@ -356,6 +365,9 @@ function Header(props) {
     </>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  showLogin: () => dispatch(set_modal('ModalLogin')),
+  showSignup: () => dispatch(set_modal('ModalSignup'))
 
-export default Header;
-
+})
+export default connect(null, mapDispatchToProps)(Header);

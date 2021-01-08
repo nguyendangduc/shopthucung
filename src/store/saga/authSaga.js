@@ -15,8 +15,8 @@ function* loginSaga(action) {
         yield put(auth_success(data.data.token))
         localStorage.setItem('expirationDate', expirationDate)
         localStorage.setItem("token", JSON.stringify(data.data.token))
-        // yield delay(3600*12*1000)
-        // yield put(logout())
+        yield delay(3600*12*1000)
+        yield put(logout())
         
     } else {
         yield put(auth_false(data.error))
@@ -25,7 +25,6 @@ function* loginSaga(action) {
 export function* loginRequest() {
     yield takeEvery(LOGIN_REQUEST, loginSaga);
 }
-
 async function fetchSignup(dataSignup) {
     const res = await axios.post(GATEWAY2 + API.AUTH, dataSignup)
      return res.data//dataAxios
@@ -67,7 +66,6 @@ function* checkAuthByTokenSaga() {
             if(res.errorCode === 200) {
                 yield put(set_user_data(res.data))
                 yield put(auth_success(res.data.token))
-                console.log(expirationDate.getTime() - new Date().getTime())
                 yield delay((expirationDate.getTime() - new Date().getTime()))//ms
                 yield put(logout())
             }

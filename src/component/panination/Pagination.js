@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { set_info_pagination_request } from 'store/actions/product/productAction'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 function Pagination(props) {
-    const [_perPage, setPerPage] = useState(8)
-    const { infoPage } = props
-    const { totalPage, idPage } = infoPage
+    const { totalPage, idPage, perPage } = useSelector(({ featureProductsReducer }) => featureProductsReducer.infoPage)
     const dispatch = useDispatch()
     const changePage = (indexPage) => {
         return (event) => {
-            dispatch(set_info_pagination_request(indexPage, props.quantity, _perPage))
+            dispatch(set_info_pagination_request(indexPage, props.quantity, perPage))
         }
     }
     const handleChange = (event) => {
-        const { value, name } = event.target
-        setPerPage(Number(value))
+        const { value } = event.target
+        dispatch(set_info_pagination_request(1, props.quantity, value))
+
     }
-    useEffect(() => {
-        dispatch(set_info_pagination_request(1, props.quantity, _perPage))
-    }, [_perPage])
+
     useEffect(() => {
         //update btn
         if (totalPage > 0) {
@@ -35,7 +32,7 @@ function Pagination(props) {
             document.querySelectorAll("#pagination .number-page li.active").forEach(e => e.classList.remove("active"))
             document.querySelectorAll("#pagination .number-page li")[idPage - 1].classList.add('active')
         }
-    }, [_perPage, idPage])
+    }, [perPage, idPage])
     const pageList = () => {
         let listItem = []
         if (totalPage > 0) {
@@ -50,13 +47,13 @@ function Pagination(props) {
         let _idPage = idPage - 1
         if (_idPage < 1)
             _idPage = 1
-        dispatch(set_info_pagination_request(_idPage, props.quantity, _perPage))
+        dispatch(set_info_pagination_request(_idPage, props.quantity, perPage))
     }
     const next = () => {
         let _idPage = idPage + 1
         if (_idPage > totalPage)
             _idPage = totalPage
-        dispatch(set_info_pagination_request(_idPage, props.quantity, _perPage))
+        dispatch(set_info_pagination_request(_idPage, props.quantity, perPage))
     }
     return (
         <>
@@ -72,10 +69,10 @@ function Pagination(props) {
 
                     </ul>
                 </div>
-                <select className="page__slt" name="sltPerPage" value={_perPage} onChange={handleChange}>
-                    <option value={8}>8 Product</option>
-                    <option value={12}>12 Product</option>
+                <select className="page__slt" name="sltPerPage" value={perPage} onChange={handleChange}>
                     <option value={16}>16 Product</option>
+                    <option value={20}>20 Product</option>
+                    <option value={24}>24 Product</option>
 
                 </select>
             </div>

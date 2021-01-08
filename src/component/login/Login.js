@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../footer/Footer';
 import {connect} from 'react-redux';
 import {login_request,signup_request} from 'store/actions/authAction';
+import {useHistory} from 'react-router-dom'
+import './dom.js'
 function Login(props) {
+    const history = useHistory()
+    console.log(history);
+
     const [dataLogin, setDataLogin] = useState({
         username: '',
         password: ''
@@ -32,29 +37,6 @@ function Login(props) {
             [event.target.name]: event.target.value,
         })
     }
-    useEffect(() => {
-        const modal = document.querySelector(".modal")
-        const switchBtns = document.querySelectorAll(".authenticate-form__switch-btn")// lấy nhiều pt == với ${class}
-        const registerForm = document.querySelector(".authenticate-form--register")
-        const loginForm = document.querySelector(".authenticate-form--login")
-        let stateForm = 1
-        switchBtns.forEach(element => {// tương đương onclick ở 2 nut
-            element.onclick = function () {
-                if (stateForm === 1) {
-                    modal.style.display = "flex"
-                    loginForm.style.display = "none"
-                    registerForm.style.display = "block"
-                    stateForm = 2
-                } else if (stateForm === 2) {
-                    modal.style.display = "flex"
-                    loginForm.style.display = "block"
-                    registerForm.style.display = "none"
-                    stateForm = 1
-                }
-            }
-        });
-
-    }, [])
     const modalStyle = {
         width: '100vw',
         height: "100vh",

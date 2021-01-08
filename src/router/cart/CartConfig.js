@@ -1,5 +1,4 @@
 import { lazy } from 'react'
-import Cart from './Cart'
 import authRoutes from 'auth/authRoutes'
 export const CartConfig = {
     settings: {

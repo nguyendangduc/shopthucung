@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'component/header/Header'
 import PurchaseComponent from 'component/purchase/Purchase'
 import Footer from 'component/footer/Footer'
-import Modal from 'component/modal/Modal'
+import ModalRoot from 'component/modal/ModalRoot'
 
 function Purchase(props) {
     return (
@@ -11,7 +11,7 @@ function Purchase(props) {
                 <Header />
                 <PurchaseComponent />
                 <Footer />
-                <Modal />
+                <ModalRoot />
             </div>
         </>
     );

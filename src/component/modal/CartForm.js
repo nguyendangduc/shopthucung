@@ -3,14 +3,15 @@ import {useSelector, useDispatch} from 'react-redux'
 import {order_request} from 'store/actions/product/productAction'
 import {useHistory} from 'react-router-dom'
 import {update_cart} from 'store/actions/product/productAction'
-function CartForm(props) {
+import {set_modal} from 'store/actions/modalAction'
+function CartForm() {
     const history = useHistory()
     const dispatch = useDispatch()
-    const {userReducer, featureProductsReducer} = useSelector(state => state)
+    const {userReducer, featureProductsReducer,modalData} = useSelector(state => state)
     const {user} = userReducer
     console.log(userReducer)
     let {cart} = featureProductsReducer
-    const checkPhone = (phoneNum) => {
+    const checkPhone = (phoneNum) => {  
         var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
         if (phoneNum !== '') {
             if (vnf_regex.test(phoneNum) == false) {
@@ -51,7 +52,7 @@ function CartForm(props) {
         } else {
             addressTxt.parentNode.querySelector('p').innerHTML = ''
         }
-        if(props.isCustomerAccount() && JSON.stringify(props.cart) !== '{}' && check) {
+        if(check) {
         
             let totalPrice = 0;
             for(let key in cart) {
@@ -77,6 +78,7 @@ function CartForm(props) {
             dispatch(order_request(order))
             dispatch(update_cart({}))
             // doan nay tinh tiep viec xac nhan dispatch thanh cong
+            dispatch(set_modal(''))
             setTimeout(function () {
                 // vua thay do location vua thay doi store
                 history.push('/purchase')
@@ -85,7 +87,7 @@ function CartForm(props) {
     }
     return (
         <>
-            <div className="cart-form-modal">
+            
                 <div className="cart-form-wrap">
                     <form className="cart-form">
                         <h1 className="cart-header">Địa chỉ nhận hàng</h1>
@@ -114,11 +116,10 @@ function CartForm(props) {
                     </form>
                     <div className="btn-control">
                         <div onClick={submit} className="cart-btn btn">Đặt hàng</div>
-                        <div onClick={props.closeModal} className="cart-btn btn cart-btn--cancel">Quay lại</div>
+                        <div onClick={() => {dispatch(set_modal(''))}}  className="cart-btn btn cart-btn--cancel">Quay lại</div>
                     </div>
                 </div>
-                <div className="cart-form-overlay" />
-            </div>
+            
 
         </>
 

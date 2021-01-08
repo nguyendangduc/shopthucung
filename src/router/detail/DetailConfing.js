@@ -7,7 +7,7 @@ export const DetailConfig = {
     auth: authRoutes.onlyGuest,
     routes: [
         {
-            path: '/detail',
+            path: '/detail/:id',
             component: React.lazy(() => import("./Detail"))
         }
     ]

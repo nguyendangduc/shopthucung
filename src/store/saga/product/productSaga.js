@@ -59,24 +59,27 @@ export function* setInfoPaginationRequest() {
 }
 
 function* handleTask(reddit) {
-    let { featureProductsInit, featureProducts } = yield select(({ featureProductsReducer }) => featureProductsReducer)
+    let { featureProducts } = yield select(({ featureProductsReducer }) => featureProductsReducer)
     if (reddit.handingType === "filter") {
         const filter = reddit.handingPayload
         if (filter) {
             if (filter.filterBy === "category") {
-                if (filter.val === 0) {
-                    featureProducts = featureProductsInit
+                if (filter.val === 'all') {
+                    featureProducts = yield RequestUtils.Get(API.PRODUCT_ALL)
                 } else {
-                    featureProducts = featureProductsInit.filter(p => Number(p.category) == filter.val)
+                    featureProducts = yield RequestUtils.Get(API.PRODUCT_ALL,{category: filter.val})
                 }
             }
         }
     } else if (reddit.handingType === "search") {
+        const productAll = yield RequestUtils.Get(API.PRODUCT_ALL)
         if (reddit.handingPayload && reddit.handingPayload.trim()) {
-            featureProducts = featureProductsInit.filter(p => p.name.toLowerCase().includes(reddit.handingPayload.toLowerCase()))
+            //gui request kem key ở url , be getAll xong lọc , với java là for xong check rồi add vào arr   
+            featureProducts = productAll.filter(p => p.name.toLowerCase().includes(reddit.handingPayload.toLowerCase()))
         } else {
-            featureProducts = featureProductsInit
+            featureProducts = productAll
         }
+
     } else if (reddit.handingType === 'sort') {
         const sort = reddit.handingPayload
         if (sort.sortBy === "price") {
@@ -89,8 +92,7 @@ function* handleTask(reddit) {
                     Number(b.price) - Number(a.price)
                 )
             }
-        }
-        if (sort.sortBy === "name") {
+        } else if (sort.sortBy === "name") {
             if (sort.val === 1) {
                 featureProducts = featureProducts.sort((a, b) =>
                     a.name > b.name ? 1 : a.name < b.name ? -1 : 0
@@ -100,8 +102,14 @@ function* handleTask(reddit) {
                     a.name > b.name ? -1 : a.name < b.name ? 1 : 0
                 )
             }
+        } else if(sort.sortBy === "createAt") {
+            featureProducts = featureProducts.sort((a, b) => 
+              new Date(b.createAt).getTime() - new Date(a.createAt).getTime())
+            
+            
         }
     }
+    console.log(reddit,featureProducts)
     return featureProducts
 }
 function* handleTaskSaga(action) {
@@ -130,7 +138,7 @@ export function* getHotProductRequest() {
 }
 //Detail
 function* getDetail(id) {
-    let productDetail = yield RequestUtils.Get(`${API.PRODUCT_ALL}/${id}`)
+    let productDetail = yield RequestUtils.Get(API.PRODUCT_ALL,{id:id, code:'dfd'})
     const cate = yield RequestUtils.Get(`${API.CATEGORY}?id=${productDetail.category}`)
     productDetail = {...productDetail, category: cate[0].name}
     return productDetail
@@ -144,6 +152,7 @@ export function* getDetailProductRequest() {
     yield takeEvery(GET_DETAIL_REQUEST, getDetailSaga)
 }
 //cart
+
 function* changeQuantity(data) {
     const {cart} = yield select(({featureProductsReducer}) => featureProductsReducer)
     if(data.param === 1) {
@@ -190,11 +199,6 @@ function postOrder(order) {
 }
 function* orderSaga(action) {
     const order = yield call(postOrder, action.payload)
-    if (order) {
-        swal("Add product success!");
-      } else {
-        swal("Add product faild!");
-      }
 }
 export function* orderRequest() {
     yield takeEvery(ORDER_REQUEST, orderSaga)

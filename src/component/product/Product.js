@@ -21,7 +21,7 @@ function Product(props) {
                             <div className="feature-product__overlay">
                             </div>
                             <div className="feature-product__detail-ctr">
-                                <Link to={`/detail/?id=${props.product.id}`}>
+                                <Link to={`/detail/${props.product.id}?code=dd`}>
                                     {/* Css color cho the P de ghi de Link */}
                                     <p>Xem chi tiết</p>
                                 </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Control from './control/Control'
-import OrderList from './orderList/OrderList'
+import Control from './Control'
+import OrderList from './OrderList'
 function MenuRight(props) {
     return (
         <>

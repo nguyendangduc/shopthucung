@@ -1,10 +1,9 @@
 import React from 'react';
-import authRoutes from 'auth/authRoutes'
 export const PurchaseConfig = {
     settings: {
         layout: 'guest'
     },
-    auth: authRoutes.onlyGuest,
+    auth: ['RULE_USER'],
     routes: [
         {
             path: '/purchase',

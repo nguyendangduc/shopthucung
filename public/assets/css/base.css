@@ -164,6 +164,9 @@ a {
     border-radius: 3px;
 
 }
+.btn + .btn {
+    margin-left: 10px;
+}
 /* #pagination */
 #pagination {
     display: flex;
@@ -233,6 +236,10 @@ a {
 .btn.authenticate-form__controls-back:hover 
 {
     background-color: rgba(0, 0,0, 0.05);
+}
+.btn--default {
+    background-color: white;
+    color: var(--text-color);
 }
 .btn--disabled {
     background-color: #b3afa8;

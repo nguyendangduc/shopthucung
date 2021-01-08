@@ -20,7 +20,8 @@ import {
     ORDER_REQUEST,
 
 } from 'const/actionConst'
-
+import RequestUtils from 'utils/RequestUtils'
+import {API} from 'const'
 export const get_feature_product_request = () => ({
     type: FEATURE_PRODUCT_FETCH_REQUEST
 })
@@ -32,9 +33,11 @@ export const get_hot_product_success = (data) => ({
     type: HOT_PRODUCT_FETCH_SUCCESS,
     payload: data
 })
-export const get_hot_product_request = () => ({
-    type: HOT_PRODUCT_FETCH_REQUEST
-})
+export const get_hot_product_request = () => {
+    return dispatch => {
+        return RequestUtils.Get(API.HOT_PRODUCT).then(data => dispatch(get_hot_product_success(data)))
+    }
+}
 export const set_info_pagination_request = (idPage, quantity, perPage) => ({
     type: SET_INFO_PAGINATION_REQUEST,
     payload: {
@@ -48,26 +51,30 @@ export const set_info_pagination_success = (data) => ({
     payload: data
 
 })
-export const handle_task_request = (data) => ({
+export const handle_task_request = (dataHading) => ({
     type: HANDLE_TASK_REQUEST,
-    payload: data
+    payload: dataHading
 })
-export const handle_task_success = (data) => ({
+export const handle_task_success = (listProduct) => ({
     type: HANDLE_TASK_SUCCESS,
-    payload: data
+    payload: listProduct
 })
 
-export const get_detail_request = (id) => ({
-    type: GET_DETAIL_REQUEST,
-    payload: id
-})
+export const get_detail_request = (id) => {
+    return dispatch => {
+        return RequestUtils.Get(API.PRODUCT_ALL,{id:id}).then(data => dispatch(get_detail_success(data)))
+    }
+}
 export const get_detail_success = (data) => ({
     type: GET_DETAIL_SUCCESS,
     payload: data
 })
-export const add_cart = (cart) => ({
+export const add_cart = (id,quantity) => ({
     type: ADD_CART,
-    payload: cart
+    payload: {
+        id,
+        quantity
+    }
 })
 export const change_quantity_request = (id, param) => ({
     type: CHANGE_QUANTITY_REQUEST,
@@ -92,10 +99,16 @@ export const get_order_list_success = (data) => ({
     type: GET_ORDER_LIST_SUCCESS,
     payload: data
 })
-export const cancel_order_request = (id) => ({
-    type: CANCEL_ORDER_REQUEST,
-    payload: id
-})
+export const cancel_order_request = (id) => {
+    return async (dispatch) => {
+        let order = await RequestUtils.Get(API.PURCHASE,{id:id})
+        order = {...order, state: 5}
+        delete order.id
+        // yield axios.put(`${GATEWAY+API.PURCHASE}/${idOrder}`, order)
+        RequestUtils.Put(API.PURCHASE,{id: id}, order).then(data => dispatch(get_order_list_request(5)))
+    }
+}
+   
 export const delete_order_request = (id) => ({
     type: DELETE_ORDER_REQUEST,
     payload: id

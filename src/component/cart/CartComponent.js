@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CartItem from './CartItem'
-import CartForm from './CartForm'
+import {set_modal} from 'store/actions/modalAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_cart } from 'store/actions/product/productAction'
 import swal from 'sweetalert'
@@ -8,15 +8,13 @@ import RoutesUtils from 'utils/RoutesUtils'
 import { withRouter } from 'react-router-dom'
 const CartComponent = (props) => {
   const { history } = props
-  const [formShowed, setFormShowed] = useState(false)
   const cartStorage = { ...JSON.parse(window.localStorage.getItem('cart')) }
   const dispatch = useDispatch()
   const { featureProductsReducer, userReducer } = useSelector(state => state)
   const { cart } = featureProductsReducer
   const { user, listUserRules } = userReducer
   useEffect(() => {
-    dispatch(add_cart(cartStorage))
-    if (JSON.stringify(cartStorage) === "{}") {
+    if (JSON.stringify(cart) === "{}") {
       swal("Không có sản phẩm trong giỏ");
     }
   }, [])
@@ -25,22 +23,19 @@ const CartComponent = (props) => {
     for (let key in cart) {
       list = [...list, <CartItem id={key} key={key} item={cart[key]} />]
     }
-
     return list
   }
   const showModal = () => {
+    
     if (RoutesUtils.isCustomerAccount(listUserRules)) {
       if (JSON.stringify(cart) != "{}") {
-        return setFormShowed(true)
+        dispatch(set_modal("CartForm"))
       } else if (JSON.stringify(cartStorage) === "{}") swal("Bạn chưa thêm sản phầm nào vào giỏ!");
     } else {
-      history.push('/login')
+      history.push({ pathname: "/login", state: { redirectUrl: '/cart' } })
     }
-    return setFormShowed(false)
   }
-  const closeModal = () => {
-    setFormShowed(false)
-  }
+
   return (
     <>
       <div className="main">
@@ -75,15 +70,7 @@ const CartComponent = (props) => {
               Đặt hàng
             </button>
           </div>
-          {
-            formShowed ?
-              <CartForm
-                closeModal={closeModal}
-                cart={cart}
-                isCustomerAccount={() => RoutesUtils.isCustomerAccount(listUserRules)}
-              />
-              : ''
-          }
+          
         </div>
       </div>
     </>

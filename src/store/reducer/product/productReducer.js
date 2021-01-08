@@ -12,17 +12,20 @@ import {
 const initState = {
     featureProductsInit: [],
     featureProducts: [],
+    featureProductsIsFetching: true,
     hotProducts: [],
+    hotProductsIsFetching: true,
     infoPage: {
-        perPage: 8,
+        perPage: 16,
         idPage: 1,
         start: 0,
-        end: 8,
+        end: 16,
         totalPage: 0
     },
     productDetail: {},
-    cart: {},
+    cart: {...JSON.parse(localStorage.getItem('cart'))},
     purchase: [],
+    purchaseIsFetching: true,
     stateWatcher: 0
 }
 
@@ -31,12 +34,14 @@ const featureProductsReducer = (state = initState, action) => {
         case FEATURE_PRODUCT_FETCH_SUCCESS:
             return {
                 ...state,
+                featureProductsIsFetching: false,
                 featureProducts: action.payload,
                 featureProductsInit: action.payload
             }
         case HOT_PRODUCT_FETCH_SUCCESS:
             return {
                 ...state,
+                featureProductsIsFetching: false,
                 hotProducts: action.payload
             }
         case SET_INFO_PAGINATION_SUCCESS:
@@ -47,6 +52,7 @@ const featureProductsReducer = (state = initState, action) => {
         case HANDLE_TASK_SUCCESS:
             return {
                 ...state,
+                featureProductsIsFetching:false,
                 featureProducts: action.payload
             }
         case GET_DETAIL_SUCCESS:
@@ -55,10 +61,26 @@ const featureProductsReducer = (state = initState, action) => {
                 productDetail: action.payload
             }
         case ADD_CART:
-            window.localStorage.setItem("cart", JSON.stringify(action.payload))
+            const quantity = action.payload.quantity
+            const id = action.payload.id
+            let total = quantity * state.productDetail.price * (1 - state.productDetail.sale / 100)
+            total = Math.round(total *100)/100 
+            const cartItem = {
+              ...state.productDetail,
+              quantity: quantity,
+              total: total
+            }
+            const cart = {...JSON.parse(window.localStorage.getItem("cart"))}
+            if(cart[id]) {
+              cart[id].quantity += quantity
+              cart[id].total += total 
+            } else {
+              cart[id] = cartItem
+            }
+            window.localStorage.setItem("cart", JSON.stringify(cart))
             return {
                 ...state,
-                cart: action.payload
+                cart: cart
             }
         case UPDATE_CART:
             window.localStorage.setItem("cart", JSON.stringify(action.payload))//coi day nhu data.json, set sql trc moi setStore
@@ -70,7 +92,8 @@ const featureProductsReducer = (state = initState, action) => {
             return {
                 ...state,
                 purchase: action.payload.orderList,
-                stateWatcher: action.payload.state
+                stateWatcher: action.payload.state,
+                purchaseIsFetching:false
             }
         default:
             return state

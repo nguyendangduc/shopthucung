@@ -26,7 +26,7 @@ const authReducer = (state = initState, action) => {
             localStorage.removeItem('token')
             localStorage.removeItem('expirationDate')
             return {
-                ...initState
+                ...initState//state cg duoc
             }
         default: return state
     }

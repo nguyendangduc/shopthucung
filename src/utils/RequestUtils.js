@@ -7,12 +7,16 @@ class RequestUtils {
         if(!data) //bao gom typeof data === 'undefined' va data- undefined cas thu nhat ko lo bi loi bien dich neu data chua dk khia bao
             return '';
         const ret = [];
-        if(data.id) {
-            return '/'+ data.id
-        }
+   
+        let id = ''
         for (let d in data)
-            ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-        return '?' + ret.join('&');
+            if(d !='id') {
+                ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+            } else {
+                id = '/' + data[d]
+            }
+        return id + '?' + ret.join('&');
+
     }
 
     static httpRequest( input, service, method = 'GET', params = '') {

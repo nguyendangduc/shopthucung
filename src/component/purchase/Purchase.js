@@ -1,6 +1,6 @@
 import React from 'react';
-import MenuLeft from './menuLeft/MenuLeft'
-import MenuRight from './menuRight/MenuRight'
+import MenuLeft from './MenuLeft'
+import MenuRight from './MenuRight'
 function Purchase(props) {
     return (
         <>
